@@ -3,7 +3,6 @@ var readline = require('readline');
 
 var readable = fs.createReadStream(__dirname + '/test.in', {
     encoding: 'utf8',
-    highWaterMark: 16 * 1024
 });
 var interface = readline.createInterface({
   input: readable,//process.stdin
