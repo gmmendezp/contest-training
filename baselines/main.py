@@ -6,9 +6,9 @@ def solve():
 
 class interface:
     @staticmethod
-    def w(s):
+    def w(*s):
         fout.write(s + "\n")
-        #print(s)
+        #print(*s)
     @staticmethod
     def r():
         return fin.readline().rstrip()
