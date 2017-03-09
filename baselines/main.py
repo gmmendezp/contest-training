@@ -1,10 +1,8 @@
 import sys
 
-def solve():
-    T = int(io.readline()) + 1
-    f = "Case #{0}: {1}";
-    for t in range(1,T):
-        io.write(f.format(t, io.readline()))
+class Solver:
+    def solve(self, params):
+        return params
 
 class InOut:
     def __init__(self, inFile=True, outFile=True):
@@ -12,7 +10,7 @@ class InOut:
         self.fout = open('test.out', 'w') if outFile else sys.stdout
     def __enter__(self):
         return self
-    def __exit__(self, type, value, traceback):
+    def __exit__(self):
         self.fin.close()
         self.fout.close()
     def write(self, *s, sep='', end='\n'):
@@ -22,5 +20,19 @@ class InOut:
     def read(self):
         return self.fin.read().rstrip()
 
-with InOut(False, False) as io:
-    solve()
+class Main:
+    def __init__(self):
+        self.io = InOut()
+        self.solver = Solver()
+        self.resultTemplate = 'Case #%s: %s'
+    def printResult(self, result):
+        self.io.write(self.resultTemplate % result)
+    def readInput(self):
+        return self.io.readline()
+    def start(self):
+        T = int(self.io.readline()) + 1
+        for t in range(1,T):
+            params = self.readInput()
+            self.printResult((t, self.solver.solve(params)))
+
+Main().start()
